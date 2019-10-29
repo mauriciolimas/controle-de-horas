@@ -20,10 +20,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+public class MainActivity extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    private Button btnAction;
+    private TextView startHour;
+    private TextView startInterval;
+    private TextView endInterval;
+    private TextView endHour;
+    private TextView totalHour;
+
+    private List list;
 
 
     @Override
@@ -45,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        this.btnAction = findViewById(R.id.btn_action);
+
+        list = new ArrayList<LocalDateTime>();
+
+
     }
 
     @Override
@@ -59,6 +85,65 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public String formatHour(Long ms){
+        int segundos = (int) ( ms / 1000 ) % 60;
+        int minutos  = (int) ( ms / 60000 ) % 60;
+        int horas    = (int) (ms / 3600000);
+        return String.format( "%02d:%02d:%02d", horas, minutos,segundos );
+    }
+
+    public Long differenceHours(LocalDateTime t1, LocalDateTime t2) {
+        return t1.until(t2, ChronoUnit.MILLIS);
+    }
+
+
+
+    public void getHour(View v) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime localDate = LocalDateTime.now();
+
+        this.list.add(localDate);
+
+        startHour = findViewById(R.id.hour_start);
+        startInterval = findViewById(R.id.start_interval);
+        endInterval = findViewById(R.id.end_interval);
+        endHour = findViewById(R.id.hour_end);
+        totalHour = findViewById(R.id.total_hour);
+
+
+
+        switch (list.size()){
+            case 1:
+                startHour.setText(( (LocalDateTime) list.get(0) ).format(formatter));
+                break;
+            case 2:
+                startInterval.setText( ((LocalDateTime) list.get(1)).format((formatter)) );
+
+                LocalDateTime t1 = (LocalDateTime) list.get(0);
+                LocalDateTime t2 = (LocalDateTime) list.get(1);
+
+                totalHour.setText(this.formatHour(this.differenceHours(t1, t2)));
+
+                break;
+            case 3:
+                endInterval.setText(( (LocalDateTime) list.get(0) ).format(formatter));
+                break;
+            case 4:
+                endHour.setText( ((LocalDateTime) list.get(1)).format((formatter)) );
+
+                Long int1 = this.differenceHours((LocalDateTime) list.get(0), (LocalDateTime) list.get(1));
+                Long int2 = this.differenceHours((LocalDateTime) list.get(2), (LocalDateTime) list.get(3));
+
+                totalHour.setText( this.formatHour( int1 + int2 ) );
+
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + list.size());
+        }
+
     }
 
 }
