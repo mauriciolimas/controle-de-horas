@@ -102,6 +102,8 @@ public class MainActivity extends AppCompatActivity  {
 
     public void getHour(View v) {
 
+
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime localDate = LocalDateTime.now();
 
@@ -112,6 +114,18 @@ public class MainActivity extends AppCompatActivity  {
         endInterval = findViewById(R.id.end_interval);
         endHour = findViewById(R.id.hour_end);
         totalHour = findViewById(R.id.total_hour);
+
+        if(list.size() > 4){
+            list.remove(0);
+            list.remove(1);
+            list.remove(2);
+            list.remove(3);
+            startHour.setText("00:00:00");
+            startInterval.setText("00:00:00");
+            endInterval.setText("00:00:00");
+            endHour.setText("00:00:00");
+            totalHour.setText("00:00:00");
+        }
 
 
 
@@ -141,7 +155,8 @@ public class MainActivity extends AppCompatActivity  {
 
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + list.size());
+                System.out.println("Error");
+
         }
 
     }
