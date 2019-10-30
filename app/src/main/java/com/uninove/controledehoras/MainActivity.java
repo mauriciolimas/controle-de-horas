@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity  {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_tools, R.id.nav_share, R.id.nav_send, R.id.nav_list)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -131,10 +131,10 @@ public class MainActivity extends AppCompatActivity  {
 
                 break;
             case 3:
-                endInterval.setText(( (LocalDateTime) list.get(0) ).format(formatter));
+                endInterval.setText(( (LocalDateTime) list.get(2) ).format(formatter));
                 break;
             case 4:
-                endHour.setText( ((LocalDateTime) list.get(1)).format((formatter)) );
+                endHour.setText( ((LocalDateTime) list.get(3)).format((formatter)) );
 
                 Long int1 = this.differenceHours((LocalDateTime) list.get(0), (LocalDateTime) list.get(1));
                 Long int2 = this.differenceHours((LocalDateTime) list.get(2), (LocalDateTime) list.get(3));
