@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -88,16 +89,15 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public String formatHour(Long ms){
-        int segundos = (int) ( ms / 1000 ) % 60;
-        int minutos  = (int) ( ms / 60000 ) % 60;
-        int horas    = (int) (ms / 3600000);
+        int segundos = (int) Math.round( ( ms / 1000 ) % 60);
+        int minutos  = (int) Math.round( ( ms / 60000 ) % 60);
+        int horas    = (int) Math.round ( (ms / 3600000) );
         return String.format( "%02d:%02d:%02d", horas, minutos,segundos );
     }
 
     public Long differenceHours(LocalDateTime t1, LocalDateTime t2) {
         return t1.until(t2, ChronoUnit.MILLIS);
     }
-
 
 
     public void getHour(View v) {
@@ -114,18 +114,6 @@ public class MainActivity extends AppCompatActivity  {
         endInterval = findViewById(R.id.end_interval);
         endHour = findViewById(R.id.hour_end);
         totalHour = findViewById(R.id.total_hour);
-
-        if(list.size() > 4){
-            list.remove(0);
-            list.remove(1);
-            list.remove(2);
-            list.remove(3);
-            startHour.setText("00:00:00");
-            startInterval.setText("00:00:00");
-            endInterval.setText("00:00:00");
-            endHour.setText("00:00:00");
-            totalHour.setText("00:00:00");
-        }
 
 
 
@@ -155,7 +143,13 @@ public class MainActivity extends AppCompatActivity  {
 
                 break;
             default:
-                System.out.println("Error");
+                startHour.setText("00:00:00");
+                startInterval.setText("00:00:00");
+                endInterval.setText("00:00:00");
+                endHour.setText("00:00:00");
+                totalHour.setText("00:00:00");
+                list.removeAll(list);
+                break;
 
         }
 
