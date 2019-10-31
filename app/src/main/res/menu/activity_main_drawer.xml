@@ -12,6 +12,12 @@
             android:id="@+id/listHour"
             android:icon="@drawable/ic_menu_camera"
             android:title="Horas" />
+
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Sobre"
+            />
     </group>
 
 </menu>

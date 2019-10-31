@@ -46,4 +46,10 @@
         android:label="Horas"
         tools:layout="@layout/fragment_list_hour" />
 
+    <fragment android:id="@+id/about"
+        android:name="com.uninove.controledehoras.About"
+        android:label="Sobre"
+        tools:layout="@layout/fragment_about"
+        />
+
 </navigation>
