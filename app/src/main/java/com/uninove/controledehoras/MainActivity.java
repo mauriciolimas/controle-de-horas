@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        this.btnAction = findViewById(R.id.btn_action);
+        this.btnAction = (Button) findViewById(R.id.btn_action);
 
         list = new ArrayList<LocalDateTime>();
 
@@ -108,23 +108,22 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
 
     public void getHour(View v) {
 
+        startHour = (TextView) findViewById(R.id.hour_start);
+        startInterval = (TextView) findViewById(R.id.start_interval);
+        endInterval = (TextView) findViewById(R.id.end_interval);
+        endHour = (TextView) findViewById(R.id.hour_end);
+        totalHour = (TextView) findViewById(R.id.total_hour);
+        imgImagem = (ImageView) findViewById(R.id.imgImagem);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime localDate = LocalDateTime.now();
 
         this.list.add(localDate);
 
-        startHour = findViewById(R.id.hour_start);
-        startInterval = findViewById(R.id.start_interval);
-        endInterval = findViewById(R.id.end_interval);
-        endHour = findViewById(R.id.hour_end);
-        totalHour = findViewById(R.id.total_hour);
 
-
-        switch (list.size()) {
+        switch (list.size()){
             case 1:
-                startHour.setText(((LocalDateTime) list.get(0)).format(formatter));
-                this.imgImagem = findViewById(R.id.imgImagem);
+                startHour.setText(( (LocalDateTime) list.get(0) ).format(formatter));
                 this.imgImagem.setImageResource(R.drawable.inicio);
                 break;
             case 2:
@@ -134,13 +133,13 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
                 LocalDateTime t2 = (LocalDateTime) list.get(1);
 
                 totalHour.setText(this.formatHour(this.differenceHours(t1, t2)));
-                this.imgImagem = findViewById(R.id.imgImagem);
-                this.imgImagem.setImageResource(R.drawable.almoco);
+
+                this.imgImagem.setImageResource(R.drawable.breakfast);
                 break;
             case 3:
-                endInterval.setText(((LocalDateTime) list.get(2)).format(formatter));
-                this.imgImagem = findViewById(R.id.imgImagem);
-                this.imgImagem.setImageResource(R.drawable.volta);
+                endInterval.setText(( (LocalDateTime) list.get(2) ).format(formatter));
+
+                this.imgImagem.setImageResource(R.drawable.back_to_work);
                 break;
             case 4:
                 endHour.setText(((LocalDateTime) list.get(3)).format((formatter)));
@@ -148,9 +147,9 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
                 Long int1 = this.differenceHours((LocalDateTime) list.get(0), (LocalDateTime) list.get(1));
                 Long int2 = this.differenceHours((LocalDateTime) list.get(2), (LocalDateTime) list.get(3));
 
-                totalHour.setText(this.formatHour(int1 + int2));
-                this.imgImagem = findViewById(R.id.imgImagem);
-                this.imgImagem.setImageResource(R.drawable.fim);
+                totalHour.setText( this.formatHour( int1 + int2 ) );
+
+                this.imgImagem.setImageResource(R.drawable.go_to_home);
                 break;
             default:
                 startHour.setText("00:00:00");
@@ -160,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
                 totalHour.setText("00:00:00");
                 list.removeAll(list);
                 this.imgImagem = findViewById(R.id.imgImagem);
-                this.imgImagem.setImageResource(R.drawable.clock);
+                this.imgImagem.setImageResource(R.drawable.ampulheta);
                 break;
 
         }
