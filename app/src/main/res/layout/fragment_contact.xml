@@ -16,20 +16,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Suporte:"
-            android:textSize="40dp"/>
+            android:textSize="40dp"
+            android:layout_marginBottom="20dp"/>
+
         <Button
             android:id="@+id/mailSuporte"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ENVIAR E-MAIL"
-            android:onClick="enviarEmail"/>
+            android:onClick="enviarEmail"
+            android:textColor="#FFF"
+            android:padding="10dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rounded_button"
+        />
 
         <Button
             android:id="@+id/callSuporte"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="LIGAÇÃO SERVICE DESK"
-            android:onClick="efetuarLigacao"/>
+            android:onClick="efetuarLigacao"
+            android:padding="10dp"
+            android:textColor="#FFF"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:background="@drawable/rounded_button" />
 
     </LinearLayout>
 
