@@ -11,13 +11,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="50dp">
+        android:padding="30dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sobre" />
-
+            android:text="Sobre:"
+            android:textSize="30dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text=
+                "Esse app permite que o usuário
+                organize seu próprio ponto eletronico.\n\nCriado por:\n\n
+Giovani Silqueira Santos RA:2216106212 \n
+Mauricio Lima Silva RA:2216101424 \n
+Raul de Luca Mosca RA:2216102304 \n
+Valkirio Andrade Souza RA 412105227 e \n
+Débora... RA: \n\n
+Esperamos que faça bom uso do app."/>
 
     </LinearLayout>
 

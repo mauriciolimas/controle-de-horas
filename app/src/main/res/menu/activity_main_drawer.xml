@@ -15,12 +15,12 @@
 
         <item
             android:id="@+id/contact"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/contato"
             android:title="Contato" />
 
         <item
             android:id="@+id/about"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/info"
             android:title="Sobre"
             />
     </group>
