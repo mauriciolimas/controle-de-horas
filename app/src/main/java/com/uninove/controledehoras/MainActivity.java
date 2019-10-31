@@ -23,6 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.time.LocalDate;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
     private TextView endInterval;
     private TextView endHour;
     private TextView totalHour;
+    private ImageView imgImagem;
 
     private List list;
 
@@ -121,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
         switch (list.size()){
             case 1:
                 startHour.setText(( (LocalDateTime) list.get(0) ).format(formatter));
+                this.imgImagem = findViewById(R.id.imgImagem);
+                this.imgImagem.setImageResource(R.drawable.inicio);
                 break;
             case 2:
                 startInterval.setText( ((LocalDateTime) list.get(1)).format((formatter)) );
@@ -129,10 +133,13 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
                 LocalDateTime t2 = (LocalDateTime) list.get(1);
 
                 totalHour.setText(this.formatHour(this.differenceHours(t1, t2)));
-
+                this.imgImagem = findViewById(R.id.imgImagem);
+                this.imgImagem.setImageResource(R.drawable.almoco);
                 break;
             case 3:
                 endInterval.setText(( (LocalDateTime) list.get(2) ).format(formatter));
+                this.imgImagem = findViewById(R.id.imgImagem);
+                this.imgImagem.setImageResource(R.drawable.volta);
                 break;
             case 4:
                 endHour.setText( ((LocalDateTime) list.get(3)).format((formatter)) );
@@ -141,7 +148,8 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
                 Long int2 = this.differenceHours((LocalDateTime) list.get(2), (LocalDateTime) list.get(3));
 
                 totalHour.setText( this.formatHour( int1 + int2 ) );
-
+                this.imgImagem = findViewById(R.id.imgImagem);
+                this.imgImagem.setImageResource(R.drawable.fim);
                 break;
             default:
                 startHour.setText("00:00:00");
@@ -150,6 +158,8 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
                 endHour.setText("00:00:00");
                 totalHour.setText("00:00:00");
                 list.removeAll(list);
+                this.imgImagem = findViewById(R.id.imgImagem);
+                this.imgImagem.setImageResource(R.drawable.clock);
                 break;
 
         }
