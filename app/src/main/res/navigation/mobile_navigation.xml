@@ -52,4 +52,10 @@
         tools:layout="@layout/fragment_about"
         />
 
+    <fragment android:id="@+id/contact"
+        android:name="com.uninove.controledehoras.Contact"
+        android:label="Contato"
+        tools:layout="@layout/fragment_contact"
+        />
+
 </navigation>
