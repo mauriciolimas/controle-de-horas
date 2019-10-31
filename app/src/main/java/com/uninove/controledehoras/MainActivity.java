@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity implements ListHour.OnFragmentInteractionListener  {
+public class MainActivity extends AppCompatActivity implements ListHour.OnFragmentInteractionListener, About.OnFragmentInteractionListener, Contact.OnFragmentInteractionListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send, R.id.listHour)
+                R.id.nav_tools, R.id.nav_share, R.id.nav_send, R.id.listHour, R.id.about, R.id.contact)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
