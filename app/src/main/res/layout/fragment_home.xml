@@ -177,7 +177,7 @@
                     android:id="@+id/btn_action"
                     android:onClick="getHour"
                     android:textColor="#FFF"
-                    android:backgroundTint="#00F"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:padding="10dp"
                     android:background="@drawable/rounded_button"
                     />

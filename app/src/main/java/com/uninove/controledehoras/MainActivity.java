@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
         switch (list.size()){
             case 1:
                 startHour.setText(( (LocalDateTime) list.get(0) ).format(formatter));
-                this.imgImagem.setImageResource(R.drawable.inicio);
+                this.imgImagem.setImageResource(R.drawable.start);
                 break;
             case 2:
                 startInterval.setText(((LocalDateTime) list.get(1)).format((formatter)));
