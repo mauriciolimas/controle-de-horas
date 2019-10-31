@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Contact">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:padding="30dp">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suporte:"
+            android:textSize="40dp"/>
+        <Button
+            android:id="@+id/mailSuporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ENVIAR E-MAIL"
+            android:onClick="enviarEmail"/>
+
+        <Button
+            android:id="@+id/callSuporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="LIGAÇÃO SERVICE DESK"
+            android:onClick="efetuarLigacao"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

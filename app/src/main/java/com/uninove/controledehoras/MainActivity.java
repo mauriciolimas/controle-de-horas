@@ -1,5 +1,8 @@
 package com.uninove.controledehoras;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -91,11 +94,11 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
                 || super.onSupportNavigateUp();
     }
 
-    public String formatHour(Long ms){
-        int segundos = (int) Math.round( ( ms / 1000 ) % 60);
-        int minutos  = (int) Math.round( ( ms / 60000 ) % 60);
-        int horas    = (int) Math.round ( (ms / 3600000) );
-        return String.format( "%02d:%02d:%02d", horas, minutos,segundos );
+    public String formatHour(Long ms) {
+        int segundos = (int) Math.round((ms / 1000) % 60);
+        int minutos = (int) Math.round((ms / 60000) % 60);
+        int horas = (int) Math.round((ms / 3600000));
+        return String.format("%02d:%02d:%02d", horas, minutos, segundos);
     }
 
     public Long differenceHours(LocalDateTime t1, LocalDateTime t2) {
@@ -104,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
 
 
     public void getHour(View v) {
-
 
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -119,15 +121,14 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
         totalHour = findViewById(R.id.total_hour);
 
 
-
-        switch (list.size()){
+        switch (list.size()) {
             case 1:
-                startHour.setText(( (LocalDateTime) list.get(0) ).format(formatter));
+                startHour.setText(((LocalDateTime) list.get(0)).format(formatter));
                 this.imgImagem = findViewById(R.id.imgImagem);
                 this.imgImagem.setImageResource(R.drawable.inicio);
                 break;
             case 2:
-                startInterval.setText( ((LocalDateTime) list.get(1)).format((formatter)) );
+                startInterval.setText(((LocalDateTime) list.get(1)).format((formatter)));
 
                 LocalDateTime t1 = (LocalDateTime) list.get(0);
                 LocalDateTime t2 = (LocalDateTime) list.get(1);
@@ -137,17 +138,17 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
                 this.imgImagem.setImageResource(R.drawable.almoco);
                 break;
             case 3:
-                endInterval.setText(( (LocalDateTime) list.get(2) ).format(formatter));
+                endInterval.setText(((LocalDateTime) list.get(2)).format(formatter));
                 this.imgImagem = findViewById(R.id.imgImagem);
                 this.imgImagem.setImageResource(R.drawable.volta);
                 break;
             case 4:
-                endHour.setText( ((LocalDateTime) list.get(3)).format((formatter)) );
+                endHour.setText(((LocalDateTime) list.get(3)).format((formatter)));
 
                 Long int1 = this.differenceHours((LocalDateTime) list.get(0), (LocalDateTime) list.get(1));
                 Long int2 = this.differenceHours((LocalDateTime) list.get(2), (LocalDateTime) list.get(3));
 
-                totalHour.setText( this.formatHour( int1 + int2 ) );
+                totalHour.setText(this.formatHour(int1 + int2));
                 this.imgImagem = findViewById(R.id.imgImagem);
                 this.imgImagem.setImageResource(R.drawable.fim);
                 break;
@@ -169,5 +170,28 @@ public class MainActivity extends AppCompatActivity implements ListHour.OnFragme
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    //contatos
+    public void enviarEmail(View view) {
+        Intent mail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "mail@gmail.com", null));
+        mail.putExtra(Intent.EXTRA_SUBJECT, "O aplicativo do ponto eletrônico apresenta erros");
+        mail.putExtra(Intent.EXTRA_TEXT, "Insira abaixo seu problema com o app:");
+        startActivity(Intent.createChooser(mail, "send email..."));
+    }
+
+    public void efetuarLigacao(View view) {
+        Intent liga = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "11955555555"));
+        if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    Activity#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for Activity#requestPermissions for more details.
+            return;
+        }
+        startActivity(liga);
     }
 }
